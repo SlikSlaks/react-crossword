@@ -9,7 +9,7 @@ interface ClueWrapperProps {
   complete?: boolean | null;
   correct?: boolean | null;
   highlight?: boolean | null;
-  highlightBackground?: string | null;
+  clueHighlightBackground?: string | null;
 }
 
 const ClueWrapper = styled.div.attrs<ClueWrapperProps>((props) => ({
@@ -19,7 +19,7 @@ const ClueWrapper = styled.div.attrs<ClueWrapperProps>((props) => ({
 }))<ClueWrapperProps>`
   cursor: default;
   background-color: ${(props) =>
-    props.highlight ? props.highlightBackground : 'transparent'};
+    props.highlight ? props.clueHighlightBackground : 'transparent'};
 `;
 
 /**
@@ -41,7 +41,7 @@ export default function Clue({
     direction: Direction;
   }
 >) {
-  const { highlightBackground } = useContext(ThemeContext);
+  const { clueHighlightBackground } = useContext(ThemeContext);
   const { focused, selectedDirection, selectedNumber, handleClueSelected } =
     useContext(CrosswordContext);
 
@@ -55,7 +55,7 @@ export default function Clue({
 
   return (
     <ClueWrapper
-      highlightBackground={highlightBackground}
+      clueHighlightBackground={clueHighlightBackground}
       highlight={
         focused && direction === selectedDirection && number === selectedNumber
       }

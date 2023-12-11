@@ -57,6 +57,7 @@ export default function Cell({
     cellBorder,
     textColor,
     numberColor,
+    focusNumberColor,
     focusBackground,
     highlightBackground,
   } = useContext(ThemeContext);
@@ -103,7 +104,10 @@ export default function Cell({
           y={y + cellPadding * 4}
           textAnchor="start"
           dominantBaseline="hanging"
-          style={{ fontSize: '50%', fill: numberColor }}
+          style={{
+            fontSize: '50%',
+            fill: focus ? focusNumberColor : numberColor,
+          }}
         >
           {number}
         </text>

@@ -27,6 +27,7 @@ const defaultTheme = {
   numberColor: 'rgba(0,0,0, 0.25)',
   focusBackground: 'rgb(255,255,0)',
   highlightBackground: 'rgb(255,255,204)',
+  clueHighlightBackground: 'rgb(255,255,204)',
 };
 
 const GridWrapper = styled.div.attrs((/* props */) => ({
@@ -55,12 +56,18 @@ const CrosswordGridPropTypes = {
     textColor: PropTypes.string,
     /** color for the across/down numbers in the grid */
     numberColor: PropTypes.string,
+    /** color for the across/down numbers in the grid when focused */
+    focusNumberColor: PropTypes.string,
     /** background color for the cell with focus, the one that the player is typing into */
     focusBackground: PropTypes.string,
     /** background color for the cells in the answer the player is working on,
-     * helps indicate in which direction focus will be moving; also used as a
-     * background on the active clue  */
+     * helps indicate in which direction focus will be moving;
+     * */
     highlightBackground: PropTypes.string,
+    /**
+     * used as a background on the active clue
+     */
+    clueHighlightBackground: PropTypes.string,
   }),
 };
 

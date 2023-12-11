@@ -70,6 +70,8 @@ export const crosswordProviderPropTypes = {
     textColor: PropTypes.string,
     /** color for the across/down numbers in the grid */
     numberColor: PropTypes.string,
+    /** color for the across/down numbers in the grid when focused */
+    focusNumberColor: PropTypes.string,
     /** background color for the cell with focus, the one that the player is typing into */
     focusBackground: PropTypes.string,
     /**
@@ -78,6 +80,11 @@ export const crosswordProviderPropTypes = {
      * background on the active clue
      */
     highlightBackground: PropTypes.string,
+
+    /**
+     * used as a background on the active clue
+     */
+    clueHighlightBackground: PropTypes.string,
   }),
 
   /** whether to use browser storage to persist the player's work-in-progress */
@@ -313,6 +320,7 @@ const defaultTheme: CrosswordProviderProps['theme'] = {
   numberColor: 'rgba(0,0,0, 0.25)',
   focusBackground: 'rgb(255,255,0)',
   highlightBackground: 'rgb(255,255,204)',
+  clueHighlightBackground: 'rgb(255,255,204)',
 };
 
 /**
@@ -858,12 +866,33 @@ const CrosswordProvider = React.forwardRef<
       saveGuesses(gridData, storageKey || defaultStorageKey);
     }, [gridData, storageKey, useStorage]);
 
+    const handleClueSelected = useCallback(
+      (direction: Direction, number: string, moveToStart = true) => {
+        const info = clues?.[direction].find((clue) => clue.number === number);
+
+        if (!info) {
+          return;
+        }
+
+        if (moveToStart) {
+          // console.log('CrosswordProvider.handleClueSelected', { info });
+          // TODO: sanity-check info?
+          moveTo(info.row, info.col, direction);
+          focus();
+        }
+
+        if (onClueSelected) {
+          onClueSelected(direction, number);
+        }
+      },
+      [clues, focus, moveTo, onClueSelected]
+    );
+
     const handleCellClick = useCallback(
       (cellData: CellData) => {
         if (cellData.used) {
           const { row, col } = cellData;
           const other = otherDirection(currentDirection);
-
           // should this use moveTo?
           setFocusedRow(row);
           setFocusedCol(col);
@@ -885,12 +914,27 @@ const CrosswordProvider = React.forwardRef<
             direction = other;
           }
 
+          if (
+            (!focused && cellData[direction]) ||
+            (focused && currentNumber !== cellData[direction])
+          ) {
+            handleClueSelected(direction, cellData[direction] ?? '', false);
+          }
+
           setCurrentNumber(cellData[direction] ?? '');
         }
 
         focus();
       },
-      [currentDirection, focus, focused, focusedCol, focusedRow]
+      [
+        currentDirection,
+        currentNumber,
+        focus,
+        focused,
+        focusedCol,
+        focusedRow,
+        handleClueSelected,
+      ]
     );
 
     const handleInputClick = useCallback<
@@ -908,35 +952,28 @@ const CrosswordProvider = React.forwardRef<
 
         let direction = currentDirection;
 
+        if (!focused && cellData[currentDirection]) {
+          handleClueSelected(direction, cellData[direction] ?? '', false);
+        }
+
         if (focused && cellData[other]) {
           setCurrentDirection(other);
           direction = other;
+          handleClueSelected(direction, cellData[direction] ?? '', false);
         }
 
         setCurrentNumber(cellData[direction] ?? '');
         focus();
       },
-      [currentDirection, focus, focused, focusedCol, focusedRow, getCellData]
-    );
-
-    const handleClueSelected = useCallback(
-      (direction: Direction, number: string) => {
-        const info = clues?.[direction].find((clue) => clue.number === number);
-
-        if (!info) {
-          return;
-        }
-
-        // console.log('CrosswordProvider.handleClueSelected', { info });
-        // TODO: sanity-check info?
-        moveTo(info.row, info.col, direction);
-        focus();
-
-        if (onClueSelected) {
-          onClueSelected(direction, number);
-        }
-      },
-      [clues, focus, moveTo, onClueSelected]
+      [
+        currentDirection,
+        focus,
+        focused,
+        focusedCol,
+        focusedRow,
+        getCellData,
+        handleClueSelected,
+      ]
     );
 
     const registerFocusHandler = useCallback(
