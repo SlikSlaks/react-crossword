@@ -241,6 +241,7 @@ export default function CrosswordGrid({ theme }: CrosswordGridProps) {
               spellCheck="false"
               autoCorrect="off"
               style={inputStyle}
+              className="crossword-input"
             />
           </div>
         </GridWrapper>

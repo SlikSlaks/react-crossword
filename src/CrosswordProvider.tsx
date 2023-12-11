@@ -542,7 +542,7 @@ const CrosswordProvider = React.forwardRef<
           }
         });
       },
-      [data, getCellData, notifyAnswerComplete]
+      [data, focused, getCellData, notifyAnswerComplete]
     );
 
     // Any time the checkQueue changes, call checkCorrectness!
