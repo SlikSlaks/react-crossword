@@ -105,7 +105,7 @@ export default function Cell({
           textAnchor="start"
           dominantBaseline="hanging"
           style={{
-            fontSize: '45%',
+            fontSize: '35%',
             fill: focus ? focusNumberColor : numberColor,
           }}
         >
