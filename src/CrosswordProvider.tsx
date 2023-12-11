@@ -537,7 +537,7 @@ const CrosswordProvider = React.forwardRef<
             })
           );
 
-          if (complete) {
+          if (complete && focused) {
             notifyAnswerComplete(direction, number, correct, info.answer);
           }
         });
