@@ -37,6 +37,7 @@ import {
   loadGuesses,
   otherDirection,
   saveGuesses,
+  switchDirectionByClue,
 } from './util';
 
 const defaultStorageKey = 'guesses';
@@ -908,7 +909,8 @@ const CrosswordProvider = React.forwardRef<
             (focused &&
               row === focusedRow &&
               col === focusedCol &&
-              cellData[other])
+              cellData[other]) ||
+            switchDirectionByClue(cellData, currentDirection, clues)
           ) {
             setCurrentDirection(other);
             direction = other;
@@ -927,6 +929,7 @@ const CrosswordProvider = React.forwardRef<
         focus();
       },
       [
+        clues,
         currentDirection,
         currentNumber,
         focus,

@@ -276,3 +276,21 @@ export function findCorrectAnswers(data: CluesInput, gridData: GuessData) {
 
   return correctAnswers;
 }
+
+export function switchDirectionByClue(
+  cellData: UsedCellData,
+  currentDirection: Direction,
+  clues: CluesData | undefined
+): boolean {
+  const other = otherDirection(currentDirection);
+  const currentDirectionClue = clues?.[currentDirection].find(
+    (clue) => clue.number === cellData[currentDirection]
+  );
+
+  return !!(
+    currentDirectionClue &&
+    currentDirectionClue.correct &&
+    currentDirectionClue.complete &&
+    cellData[other]
+  );
+}
