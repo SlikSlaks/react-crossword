@@ -18,6 +18,7 @@ const themeContext = {
   gridBackground: 'black',
   cellBackground: 'white',
   cellBorder: '#333',
+  focusedCellBorder: '#333',
   textColor: '#666',
   numberColor: 'red',
   focusBackground: '#f88',

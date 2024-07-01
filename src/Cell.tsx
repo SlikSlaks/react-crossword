@@ -55,6 +55,7 @@ export default function Cell({
     // gridBackground,
     cellBackground,
     cellBorder,
+    focusedCellBorder,
     textColor,
     numberColor,
     focusNumberColor,
@@ -95,7 +96,7 @@ export default function Cell({
             ? highlightBackground
             : cellBackground
         }
-        stroke={cellBorder}
+        stroke={focus ? focusedCellBorder : cellBorder}
         strokeWidth={cellSize / 50}
       />
       {number && (
