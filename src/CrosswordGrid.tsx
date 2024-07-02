@@ -24,6 +24,7 @@ const defaultTheme = {
   cellBackground: 'rgb(255,255,255)',
   cellBorder: 'rgb(0,0,0)',
   focusedCellBorder: 'rgb(0,0,0)',
+  highlightCellBorder: 'rgb(0,0,0)',
   textColor: 'rgb(0,0,0)',
   numberColor: 'rgba(0,0,0, 0.25)',
   focusBackground: 'rgb(255,255,0)',
@@ -55,6 +56,8 @@ const CrosswordGridPropTypes = {
     cellBorder: PropTypes.string,
     /** border for an answer cell when focused */
     focusedCellBorder: PropTypes.string,
+    /** border for an answer cell when highlighted */
+    highlightCellBorder: PropTypes.string,
     /** color for answer text (entered by the player) */
     textColor: PropTypes.string,
     /** color for the across/down numbers in the grid */

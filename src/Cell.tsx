@@ -56,6 +56,7 @@ export default function Cell({
     cellBackground,
     cellBorder,
     focusedCellBorder,
+    highlightCellBorder,
     textColor,
     numberColor,
     focusNumberColor,
@@ -87,6 +88,8 @@ export default function Cell({
       <rect
         x={x + cellPadding}
         y={y + cellPadding}
+        rx="1.5"
+        ry="1.5"
         width={cellInner}
         height={cellInner}
         fill={
@@ -96,13 +99,19 @@ export default function Cell({
             ? highlightBackground
             : cellBackground
         }
-        stroke={focus ? focusedCellBorder : cellBorder}
+        stroke={
+          focus
+            ? focusedCellBorder
+            : highlight
+            ? highlightCellBorder
+            : cellBorder
+        }
         strokeWidth={cellSize / 50}
       />
       {number && (
         <text
-          x={x + cellPadding * 4}
-          y={y + cellPadding * 4}
+          x={x + cellPadding * 8}
+          y={y + cellPadding * 8}
           textAnchor="start"
           dominantBaseline="hanging"
           style={{
