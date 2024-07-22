@@ -10,6 +10,11 @@ interface ClueWrapperProps {
   correct?: boolean | null;
   highlight?: boolean | null;
   clueHighlightBackground?: string | null;
+  clueTextColor?: string | null;
+  clueCorrectTextColor?: string | null;
+  clueCorrectTextDecoration?: string | null;
+  padding?: string | null;
+  borderRadius?: string | null;
 }
 
 const ClueWrapper = styled.div.attrs<ClueWrapperProps>((props) => ({
@@ -18,6 +23,12 @@ const ClueWrapper = styled.div.attrs<ClueWrapperProps>((props) => ({
   }`,
 }))<ClueWrapperProps>`
   cursor: default;
+  padding: ${(props) => props.padding};
+  color: ${(props) =>
+    props.correct ? props.clueCorrectTextColor : props.clueTextColor};
+  border-radius: ${(props) => (props.highlight ? props.borderRadius : null)};
+  text-decoration: ${(props) =>
+    props.correct ? props.clueCorrectTextDecoration : null};
   background-color: ${(props) =>
     props.highlight ? props.clueHighlightBackground : 'transparent'};
 `;
@@ -41,7 +52,12 @@ export default function Clue({
     direction: Direction;
   }
 >) {
-  const { clueHighlightBackground } = useContext(ThemeContext);
+  const {
+    clueHighlightBackground,
+    clueTextColor,
+    clueCorrectTextColor,
+    clueCorrectTextDecoration,
+  } = useContext(ThemeContext);
   const { focused, selectedDirection, selectedNumber, handleClueSelected } =
     useContext(CrosswordContext);
 
@@ -56,16 +72,21 @@ export default function Clue({
   return (
     <ClueWrapper
       clueHighlightBackground={clueHighlightBackground}
+      borderRadius="10px"
+      padding="10px"
       highlight={
         focused && direction === selectedDirection && number === selectedNumber
       }
       complete={complete}
       correct={correct}
+      clueCorrectTextDecoration={clueCorrectTextDecoration}
+      clueCorrectTextColor={clueCorrectTextColor}
+      clueTextColor={clueTextColor}
       {...props}
       onClick={handleClick}
       aria-label={`clue-${number}-${direction}`}
     >
-      {number}: {children}
+      {number}&nbsp;&nbsp;&nbsp;{children}
     </ClueWrapper>
   );
 }

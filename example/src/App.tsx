@@ -275,16 +275,16 @@ const CrosswordWrapper = styled.div`
   }
 
   .clue.correct {
-    ::before {
-      content: '\u2713'; /* a.k.a. checkmark: ✓ */
-      display: inline-block;
-      text-decoration: none;
-      color: rgb(100, 200, 100);
-      margin-right: 0.25em;
-    }
+    //::before {
+    //  content: '\u2713'; /* a.k.a. checkmark: ✓ */
+    //  display: inline-block;
+    //  text-decoration: none;
+    //  color: rgb(100, 200, 100);
+    //  margin-right: 0.25em;
+    //}
 
-    text-decoration: line-through;
-    color: rgb(130, 130, 130);
+    //text-decoration: line-through;
+    //color: rgb(130, 130, 130);
   }
 `;
 
@@ -600,7 +600,11 @@ function App() {
                 },
               },
             }}
-            theme={{ allowNonSquare: true }}
+            theme={{
+              allowNonSquare: true,
+              focusBackground: 'red',
+              highlightBackground: 'green',
+            }}
             storageKey="third-example"
           />
         </CrosswordWrapper>

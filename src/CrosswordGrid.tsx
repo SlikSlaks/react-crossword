@@ -31,6 +31,9 @@ const defaultTheme = {
   focusBackground: 'rgb(255,255,0)',
   highlightBackground: 'rgb(255,255,204)',
   clueHighlightBackground: 'rgb(255,255,204)',
+  clueCorrectTextColor: 'rgb(0,0,0, 0.25)',
+  clueTextColor: 'rgb(0,0,0)',
+  clueCorrectTextDecoration: 'line-through',
 };
 
 const GridWrapper = styled.div.attrs((/* props */) => ({
@@ -77,6 +80,18 @@ const CrosswordGridPropTypes = {
      * used as a background on the active clue
      */
     clueHighlightBackground: PropTypes.string,
+    /**
+     * color of clue text
+     */
+    clueTextColor: PropTypes.string,
+    /**
+     * color of correct clue text
+     */
+    clueCorrectTextColor: PropTypes.string,
+    /**
+     * correct clue text decoration
+     */
+    clueCorrectTextDecoration: PropTypes.string,
   }),
 };
 

@@ -46,16 +46,22 @@ const CluesWrapper = styled.div.attrs((/* props */) => ({
 
   .direction {
     margin-bottom: 2em;
-    /* padding: 0 1em;
-    flex: 1 1 20%; */
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-row-gap: 15px;
 
     .header {
-      margin-top: 0;
-      margin-bottom: 0.5em;
+      margin: 0;
+      display: grid;
+      grid-template-columns: min-content min-content;
+      align-items: center;
+      grid-column-gap: 10px;
     }
 
-    div {
-      margin-top: 0.5em;
+    .cluesWrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-row-gap: 25px;
     }
   }
 `;
