@@ -16,6 +16,7 @@ const themeContext = {
   cellBackground: 'rgb(255,255,255)',
   cellBorder: 'rgb(0,0,0)',
   textColor: 'rgb(0,0,0)',
+  focusTextColor: 'rgb(0,0,0)',
   numberColor: 'rgba(0,0,0, 0.25)',
   focusBackground: 'rgb(255,255,0)',
   highlightBackground: 'rgb(255,255,204)',

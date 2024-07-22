@@ -21,6 +21,7 @@ const themeContext = {
   focusedCellBorder: '#333',
   highlightCellBorder: '#333',
   textColor: '#666',
+  focusTextColor: '#666',
   numberColor: 'red',
   focusBackground: '#f88',
   highlightBackground: '#fdd',

@@ -73,6 +73,8 @@ export const crosswordProviderPropTypes = {
     highlightCellBorder: PropTypes.string,
     /** color for answer text (entered by the player) */
     textColor: PropTypes.string,
+    /** color for answer text (entered by the player) when focused */
+    focusTextColor: PropTypes.string,
     /** color for the across/down numbers in the grid */
     numberColor: PropTypes.string,
     /** color for the across/down numbers in the grid when focused */
@@ -324,6 +326,7 @@ const defaultTheme: CrosswordProviderProps['theme'] = {
   focusedCellBorder: 'rgb(0,0,0)',
   highlightCellBorder: 'rgb(0,0,0)',
   textColor: 'rgb(0,0,0)',
+  focusTextColor: 'rgb(0,0,0)',
   numberColor: 'rgba(0,0,0, 0.25)',
   focusBackground: 'rgb(255,255,0)',
   highlightBackground: 'rgb(255,255,204)',

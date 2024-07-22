@@ -58,6 +58,7 @@ export default function Cell({
     focusedCellBorder,
     highlightCellBorder,
     textColor,
+    focusTextColor,
     numberColor,
     focusNumberColor,
     focusBackground,
@@ -127,7 +128,7 @@ export default function Cell({
         y={y + cellHalf + 1} // +1 for visual alignment?
         textAnchor="middle"
         dominantBaseline="middle"
-        style={{ fill: textColor }}
+        style={{ fill: focus ? focusTextColor : textColor }}
         className={
           answer === guess ? 'guess-text-correct' : 'guess-text-incorrect'
         }
