@@ -79,14 +79,19 @@ export default function Clue({
       }
       complete={complete}
       correct={correct}
-      clueCorrectTextDecoration={clueCorrectTextDecoration}
+      // clueCorrectTextDecoration={clueCorrectTextDecoration}
       clueCorrectTextColor={clueCorrectTextColor}
       clueTextColor={clueTextColor}
       {...props}
       onClick={handleClick}
       aria-label={`clue-${number}-${direction}`}
     >
-      {number}&nbsp;&nbsp;&nbsp;{children}
+      {number}&nbsp;&nbsp;&nbsp;
+      <span
+        style={{ textDecoration: correct ? clueCorrectTextDecoration : null }}
+      >
+        {children}
+      </span>
     </ClueWrapper>
   );
 }

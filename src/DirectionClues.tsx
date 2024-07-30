@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
-import { ThemeContext } from 'styled-components';
+import styled, { ThemeContext } from 'styled-components';
 import { CrosswordContext } from './context';
 import type { Direction, EnhancedProps } from './types';
 
@@ -27,12 +27,70 @@ export type DirectionCluesProps = EnhancedProps<
   { direction: Direction }
 >;
 
+interface CluesWrapperProps {
+  background: string | null;
+  padding: string | null;
+  gridTemplateColumns: string | null;
+  mobileGridTemplateColumns: string | null;
+  headerColor: string | null;
+  columnBreakpoint: string | null;
+  maxHeight: string | null;
+  overflow: string | null;
+}
+
+const CluesWrapper = styled.div.attrs<CluesWrapperProps>(() => ({
+  className: 'cluesWrapper',
+}))<CluesWrapperProps>`
+  padding: ${(props) => props.padding};
+  display: grid;
+  grid-template-columns: ${(props) => props.gridTemplateColumns};
+  max-height: ${(props) => props.maxHeight};
+  overflow: ${(props) => props.overflow};
+
+  @media (max-width: ${(props) => props.columnBreakpoint}) {
+    grid-template-columns: ${(props) => props.mobileGridTemplateColumns};
+  }
+
+  .direction {
+    margin-bottom: 2em;
+    display: grid;
+    grid-auto-columns: 1fr;
+    grid-row-gap: 15px;
+
+    .header {
+      margin: 0;
+      display: grid;
+      grid-template-columns: min-content min-content;
+      align-items: center;
+      grid-column-gap: 10px;
+      color: ${(props) => props.headerColor};
+    }
+
+    .cluesWrapper {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-row-gap: 25px;
+    }
+  }
+`;
+
 export default function DirectionClues({
   direction,
   label,
 }: DirectionCluesProps) {
   const { clues } = useContext(CrosswordContext);
-  const { focusBackground, highlightBackground } = useContext(ThemeContext);
+  const {
+    focusBackground,
+    highlightBackground,
+    cluesContainerBackground,
+    cluesContainerGridTemplateColumns,
+    cluesContainerPadding,
+    cluesContainerMobileGridTemplateColumns,
+    cluesHeaderColor,
+    columnBreakpoint,
+    cluesContainerMaxHeight,
+    cluesContainerOverflow,
+  } = useContext(ThemeContext);
 
   const directionIcon = (type: Direction) => (
     <svg
@@ -117,7 +175,16 @@ export default function DirectionClues({
         {label || direction.toUpperCase()}
         {directionIcon(direction)}
       </h3>
-      <div className="cluesWrapper">
+      <CluesWrapper
+        background={cluesContainerBackground}
+        columnBreakpoint={columnBreakpoint}
+        headerColor={cluesHeaderColor}
+        padding={cluesContainerPadding}
+        gridTemplateColumns={cluesContainerGridTemplateColumns}
+        mobileGridTemplateColumns={cluesContainerMobileGridTemplateColumns}
+        overflow={cluesContainerOverflow}
+        maxHeight={cluesContainerMaxHeight}
+      >
         {clues?.[direction].map(({ number, clue, complete, correct }) => (
           <Clue
             key={number}
@@ -129,7 +196,7 @@ export default function DirectionClues({
             {clue}
           </Clue>
         ))}
-      </div>
+      </CluesWrapper>
     </div>
   );
 }

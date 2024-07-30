@@ -87,7 +87,34 @@ export const crosswordProviderPropTypes = {
      * background on the active clue
      */
     highlightBackground: PropTypes.string,
-
+    /**
+     * used as a background of clues container
+     */
+    cluesContainerBackground: PropTypes.string,
+    /**
+     * clues container padding
+     */
+    cluesContainerPadding: PropTypes.string,
+    /**
+     * clues container grid-template-columns (display grid hardcoded)
+     */
+    cluesContainerGridTemplateColumns: PropTypes.string,
+    /**
+     * clues container grid-template-columns (display grid hardcoded)
+     */
+    cluesContainerMobileGridTemplateColumns: PropTypes.string,
+    /**
+     * color of clues label
+     */
+    cluesHeaderColor: PropTypes.string,
+    /**
+     * clues container overflow
+     */
+    cluesContainerOverflow: PropTypes.string,
+    /**
+     * clues container max-height
+     */
+    cluesContainerMaxHeight: PropTypes.string,
     /**
      * used as a background on the active clue
      */
@@ -346,6 +373,13 @@ const defaultTheme: CrosswordProviderProps['theme'] = {
   clueCorrectTextColor: 'rgb(0,0,0, 0.25)',
   clueTextColor: 'rgb(0,0,0)',
   clueCorrectTextDecoration: 'line-through',
+  cluesContainerBackground: 'rgb(255,255,255)',
+  cluesContainerGridTemplateColumns: '1fr',
+  cluesContainerPadding: '0',
+  cluesContainerOverflow: 'scroll-y',
+  cluesContainerMaxHeight: '100%',
+  cluesContainerMobileGridTemplateColumns: '1fr',
+  cluesHeaderColor: 'rgb(0,0,0)',
 };
 
 /**
