@@ -73,10 +73,25 @@ const CluesContainer = styled.div.attrs<CluesContainerProps>(() => ({
     .cluesWrapper {
       display: grid;
       grid-template-columns: 1fr;
-      grid-row-gap: 25px;
+      grid-row-gap: 5px;
       align-items: baseline;
       max-height: ${(props) => props.maxHeight};
       overflow: ${(props) => props.cluesWrapperOverflow};
+
+      &::-webkit-scrollbar {
+        width: 4px;
+      }
+
+      &::-webkit-scrollbar-track {
+        border-radius: 10px;
+      }
+      &::-webkit-scrollbar-corner {
+        background: transparent;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: rgba(109, 114, 127, 0.6);
+        border-radius: 10px;
+      }
     }
   }
 `;
