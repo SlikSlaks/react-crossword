@@ -35,7 +35,7 @@ interface CluesContainerProps {
   headerColor: string | null;
   columnBreakpoint: string | null;
   maxHeight: string | null;
-  overflow: string | null;
+  cluesWrapperOverflow?: string | null;
 }
 
 const CluesContainer = styled.div.attrs<CluesContainerProps>(() => ({
@@ -52,7 +52,6 @@ const CluesContainer = styled.div.attrs<CluesContainerProps>(() => ({
   }
 
   .direction {
-    margin-bottom: 2em;
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: min-content;
@@ -76,7 +75,7 @@ const CluesContainer = styled.div.attrs<CluesContainerProps>(() => ({
       grid-row-gap: 25px;
       align-items: baseline;
       max-height: ${(props) => props.maxHeight};
-      overflow: ${(props) => props.overflow};
+      overflow: ${(props) => props.cluesWrapperOverflow};
     }
   }
 `;
@@ -183,7 +182,7 @@ export default function DirectionClues({
       padding={cluesContainerPadding}
       gridTemplateColumns={cluesContainerGridTemplateColumns}
       mobileGridTemplateColumns={cluesContainerMobileGridTemplateColumns}
-      overflow={cluesContainerOverflow}
+      cluesWrapperOverflow={cluesContainerOverflow}
       maxHeight={cluesContainerMaxHeight}
     >
       <div className="direction">
