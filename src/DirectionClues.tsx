@@ -169,35 +169,35 @@ export default function DirectionClues({
   );
 
   return (
-    <div className="direction">
-      {/* use something other than h3? */}
-      <h3 className="header">
-        {label || direction.toUpperCase()}
-        {directionIcon(direction)}
-      </h3>
-      <CluesWrapper
-        background={cluesContainerBackground}
-        columnBreakpoint={columnBreakpoint}
-        headerColor={cluesHeaderColor}
-        padding={cluesContainerPadding}
-        gridTemplateColumns={cluesContainerGridTemplateColumns}
-        mobileGridTemplateColumns={cluesContainerMobileGridTemplateColumns}
-        overflow={cluesContainerOverflow}
-        maxHeight={cluesContainerMaxHeight}
-      >
-        {clues?.[direction].map(({ number, clue, complete, correct }) => (
-          <Clue
-            key={number}
-            direction={direction}
-            number={number}
-            complete={complete}
-            correct={correct}
-          >
-            {clue}
-          </Clue>
-        ))}
-      </CluesWrapper>
-    </div>
+    <CluesWrapper
+      background={cluesContainerBackground}
+      columnBreakpoint={columnBreakpoint}
+      headerColor={cluesHeaderColor}
+      padding={cluesContainerPadding}
+      gridTemplateColumns={cluesContainerGridTemplateColumns}
+      mobileGridTemplateColumns={cluesContainerMobileGridTemplateColumns}
+      overflow={cluesContainerOverflow}
+      maxHeight={cluesContainerMaxHeight}
+    >
+      <div className="direction">
+        {/* use something other than h3? */}
+        <h3 className="header">
+          {label || direction.toUpperCase()}
+          {directionIcon(direction)}
+        </h3>
+      </div>
+      {clues?.[direction].map(({ number, clue, complete, correct }) => (
+        <Clue
+          key={number}
+          direction={direction}
+          number={number}
+          complete={complete}
+          correct={correct}
+        >
+          {clue}
+        </Clue>
+      ))}
+    </CluesWrapper>
   );
 }
 

@@ -23,6 +23,7 @@ const ClueWrapper = styled.div.attrs<ClueWrapperProps>((props) => ({
   }`,
 }))<ClueWrapperProps>`
   cursor: default;
+  height: fit-content;
   padding: ${(props) => props.padding};
   color: ${(props) =>
     props.correct ? props.clueCorrectTextColor : props.clueTextColor};
