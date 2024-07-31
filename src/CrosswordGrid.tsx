@@ -37,7 +37,7 @@ const defaultTheme = {
   cluesContainerBackground: 'rgb(255,255,255)',
   cluesContainerGridTemplateColumns: '1fr',
   cluesContainerPadding: '0',
-  cluesContainerOverflow: 'scroll-y',
+  cluesContainerOverflow: 'scroll',
   cluesContainerMaxHeight: '100%',
   cluesContainerMobileGridTemplateColumns: '1fr',
   cluesHeaderColor: 'rgb(0,0,0)',

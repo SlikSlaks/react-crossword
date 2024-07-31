@@ -27,7 +27,7 @@ export type DirectionCluesProps = EnhancedProps<
   { direction: Direction }
 >;
 
-interface CluesWrapperProps {
+interface CluesContainerProps {
   background: string | null;
   padding: string | null;
   gridTemplateColumns: string | null;
@@ -38,14 +38,14 @@ interface CluesWrapperProps {
   overflow: string | null;
 }
 
-const CluesWrapper = styled.div.attrs<CluesWrapperProps>(() => ({
-  className: 'cluesWrapper',
-}))<CluesWrapperProps>`
+const CluesContainer = styled.div.attrs<CluesContainerProps>(() => ({
+  className: 'cluesContainer',
+}))<CluesContainerProps>`
   padding: ${(props) => props.padding};
   display: grid;
   grid-template-columns: ${(props) => props.gridTemplateColumns};
-  max-height: ${(props) => props.maxHeight};
-  overflow: ${(props) => props.overflow};
+  max-height: 100%;
+  overflow: hidden;
 
   @media (max-width: ${(props) => props.columnBreakpoint}) {
     grid-template-columns: ${(props) => props.mobileGridTemplateColumns};
@@ -54,13 +54,17 @@ const CluesWrapper = styled.div.attrs<CluesWrapperProps>(() => ({
   .direction {
     margin-bottom: 2em;
     display: grid;
-    grid-auto-columns: 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: min-content;
+    align-items: baseline;
     grid-row-gap: 15px;
+    max-height: 100%;
+    overflow: hidden;
 
     .header {
       margin: 0;
       display: grid;
-      grid-template-columns: min-content min-content;
+      grid-template-columns: max-content min-content;
       align-items: center;
       grid-column-gap: 10px;
       color: ${(props) => props.headerColor};
@@ -70,6 +74,9 @@ const CluesWrapper = styled.div.attrs<CluesWrapperProps>(() => ({
       display: grid;
       grid-template-columns: 1fr;
       grid-row-gap: 25px;
+      align-items: baseline;
+      max-height: ${(props) => props.maxHeight};
+      overflow: ${(props) => props.overflow};
     }
   }
 `;
@@ -169,7 +176,7 @@ export default function DirectionClues({
   );
 
   return (
-    <CluesWrapper
+    <CluesContainer
       background={cluesContainerBackground}
       columnBreakpoint={columnBreakpoint}
       headerColor={cluesHeaderColor}
@@ -185,19 +192,21 @@ export default function DirectionClues({
           {label || direction.toUpperCase()}
           {directionIcon(direction)}
         </h3>
+        <div className="cluesWrapper">
+          {clues?.[direction].map(({ number, clue, complete, correct }) => (
+            <Clue
+              key={number}
+              direction={direction}
+              number={number}
+              complete={complete}
+              correct={correct}
+            >
+              {clue}
+            </Clue>
+          ))}
+        </div>
       </div>
-      {clues?.[direction].map(({ number, clue, complete, correct }) => (
-        <Clue
-          key={number}
-          direction={direction}
-          number={number}
-          complete={complete}
-          correct={correct}
-        >
-          {clue}
-        </Clue>
-      ))}
-    </CluesWrapper>
+    </CluesContainer>
   );
 }
 
