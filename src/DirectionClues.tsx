@@ -46,6 +46,7 @@ const CluesContainer = styled.div.attrs<CluesContainerProps>(() => ({
   grid-template-columns: ${(props) => props.gridTemplateColumns};
   max-height: 100%;
   overflow: hidden;
+  background: ${(props) => props.background};
 
   @media (max-width: ${(props) => props.columnBreakpoint}) {
     grid-template-columns: ${(props) => props.mobileGridTemplateColumns};
