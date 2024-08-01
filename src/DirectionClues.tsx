@@ -36,6 +36,8 @@ interface CluesContainerProps {
   columnBreakpoint: string | null;
   maxHeight: string | null;
   cluesWrapperOverflow?: string | null;
+  cluesContainerScrollbarThumbColor?: string | null;
+  cluesContainerScrollbarTrackColor?: string | null;
 }
 
 const CluesContainer = styled.div.attrs<CluesContainerProps>(() => ({
@@ -45,6 +47,7 @@ const CluesContainer = styled.div.attrs<CluesContainerProps>(() => ({
   display: grid;
   grid-template-columns: ${(props) => props.gridTemplateColumns};
   max-height: 100%;
+  width: 100%;
   overflow: hidden;
   background: ${(props) => props.background};
 
@@ -84,13 +87,13 @@ const CluesContainer = styled.div.attrs<CluesContainerProps>(() => ({
 
       &::-webkit-scrollbar-track {
         border-radius: 10px;
-        background: #292b30;
+        background: ${(props) => props.cluesContainerScrollbarTrackColor};
       }
       &::-webkit-scrollbar-corner {
         background: transparent;
       }
       &::-webkit-scrollbar-thumb {
-        background: #6d727f;
+        background: ${(props) => props.cluesContainerScrollbarThumbColor};
         border-radius: 10px;
       }
     }
@@ -113,6 +116,8 @@ export default function DirectionClues({
     columnBreakpoint,
     cluesContainerMaxHeight,
     cluesContainerOverflow,
+    cluesContainerScrollbarTrackColor,
+    cluesContainerScrollbarThumbColor,
   } = useContext(ThemeContext);
 
   const directionIcon = (type: Direction) => (
@@ -201,6 +206,8 @@ export default function DirectionClues({
       mobileGridTemplateColumns={cluesContainerMobileGridTemplateColumns}
       cluesWrapperOverflow={cluesContainerOverflow}
       maxHeight={cluesContainerMaxHeight}
+      cluesContainerScrollbarThumbColor={cluesContainerScrollbarThumbColor}
+      cluesContainerScrollbarTrackColor={cluesContainerScrollbarTrackColor}
     >
       <div className="direction">
         {/* use something other than h3? */}

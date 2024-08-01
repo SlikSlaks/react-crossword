@@ -40,6 +40,8 @@ const defaultTheme = {
   cluesContainerOverflow: 'scroll',
   cluesContainerMaxHeight: '100%',
   cluesContainerMobileGridTemplateColumns: '1fr',
+  cluesContainerScrollbarThumbColor: '#6d727f',
+  cluesContainerScrollbarTrackColor: '#292b30',
   cluesHeaderColor: 'rgb(0,0,0)',
 };
 
@@ -111,6 +113,14 @@ const CrosswordGridPropTypes = {
      * clues container max-height
      */
     cluesContainerMaxHeight: PropTypes.string,
+    /**
+     * clues container scrollbar track color
+     */
+    cluesContainerScrollbarTrackColor: PropTypes.string,
+    /**
+     * clues container scrollbar thumb color
+     */
+    cluesContainerScrollbarThumbColor: PropTypes.string,
     /**
      * used as a background on the active clue
      */
