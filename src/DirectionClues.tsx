@@ -84,12 +84,13 @@ const CluesContainer = styled.div.attrs<CluesContainerProps>(() => ({
 
       &::-webkit-scrollbar-track {
         border-radius: 10px;
+        background: #292b30;
       }
       &::-webkit-scrollbar-corner {
         background: transparent;
       }
       &::-webkit-scrollbar-thumb {
-        background: rgba(109, 114, 127, 0.6);
+        background: #6d727f;
         border-radius: 10px;
       }
     }
